@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weebcentral Exporter</title>
+    <title>Weebcentral Exporter V2</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #ffffff;
-            color: #111111;
+            background: #000000;
+            color: #ffffff;
             padding: 60px 20px;
             line-height: 1.5;
         }
@@ -32,7 +32,7 @@
         }
         .subtitle {
             font-size: 16px;
-            color: #666666;
+            color: #999999;
             font-weight: 400;
         }
         .steps {
@@ -47,7 +47,7 @@
         .step-number {
             font-size: 14px;
             font-weight: 600;
-            color: #999999;
+            color: #666666;
             min-width: 24px;
             padding-top: 2px;
         }
@@ -55,18 +55,18 @@
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 8px;
-            color: #111111;
+            color: #ffffff;
         }
         .step-content p {
             font-size: 15px;
-            color: #666666;
+            color: #999999;
             margin-bottom: 16px;
         }
         .copy-btn {
             display: inline-block;
             padding: 10px 20px;
-            background: #000000;
-            color: white;
+            background: #ffffff;
+            color: #000000;
             border: none;
             border-radius: 6px;
             font-size: 14px;
@@ -76,7 +76,7 @@
             text-decoration: none;
         }
         .copy-btn:hover {
-            background: #333333;
+            background: #e6e6e6;
             transform: translateY(-1px);
         }
         .copy-btn:active {
@@ -85,17 +85,31 @@
         footer {
             margin-top: 80px;
             padding-top: 40px;
-            border-top: 1px solid #f0f0f0;
+            border-top: 1px solid #222222;
             text-align: center;
             font-size: 14px;
+        }
+        .footer-logo {
+            margin-bottom: 16px;
+        }
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+        .footer-links a {
             color: #999999;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-links a:hover {
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Weebcentral Exporter</h1>
+            <h1>Weebcentral Exporter V2</h1>
             <p class="subtitle">Export your manga subscriptions in seconds</p>
         </header>
 
@@ -104,7 +118,7 @@
                 <div class="step-number">01</div>
                 <div class="step-content">
                     <h3>Copy the code</h3>
-                    <p>Click below to copy the bookmarklet code and open your subscriptions page.</p>
+                    <p>Click below to copy the export code and open your subscriptions page.</p>
                     <button class="copy-btn" onclick="copyAndGo()">Copy & Open</button>
                 </div>
             </div>
@@ -113,21 +127,26 @@
                 <div class="step-number">02</div>
                 <div class="step-content">
                     <h3>Create a bookmark</h3>
-                    <p>Paste the code as the URL in a new bookmark. Right-click the bookmarks bar and select "Add Page" to save it.</p>
+                    <p>Paste the code as the URL in a new bookmark. Right-click the bookmarks bar and select "Add Bookmark" to save it.</p>
                 </div>
             </div>
 
             <div class="step">
                 <div class="step-number">03</div>
                 <div class="step-content">
-                    <h3>Run the bookmarklet</h3>
-                    <p>Click your bookmark from the bookmarks bar. It'll load all your subscriptions and copy the titles to your clipboard automatically.</p>
+                    <h3>Run the exporter</h3>
+                    <p>Click your bookmark from the bookmarks bar. It'll load all your subscriptions and export the titles automatically 👅.</p>
                 </div>
             </div>
         </div>
 
         <footer>
-            Made with care • <a href="#" style="color: #666666; text-decoration: none;">GitHub</a>
+            <div class="footer-logo">
+                <img src="https://i.ibb.co/MxJ8SJpD/TSDIFSD89W4388.png" alt="Logo">
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/ellie764/weebcentral-exporter-v2" target="_blank">GitHub</a>
+            </div>
         </footer>
     </div>
 
