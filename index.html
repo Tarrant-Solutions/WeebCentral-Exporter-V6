@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weebcentral Exporter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #111111;
+            padding: 60px 20px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 80px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: #666666;
+            font-weight: 400;
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .step {
+            display: flex;
+            gap: 24px;
+        }
+        .step-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #999999;
+            min-width: 24px;
+            padding-top: 2px;
+        }
+        .step-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #111111;
+        }
+        .step-content p {
+            font-size: 15px;
+            color: #666666;
+            margin-bottom: 16px;
+        }
+        .copy-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #000000;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .copy-btn:hover {
+            background: #333333;
+            transform: translateY(-1px);
+        }
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid #f0f0f0;
+            text-align: center;
+            font-size: 14px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weebcentral Exporter</h1>
+            <p class="subtitle">Export your manga subscriptions in seconds</p>
+        </header>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Copy the code</h3>
+                    <p>Click below to copy the bookmarklet code and open your subscriptions page.</p>
+                    <button class="copy-btn" onclick="copyAndGo()">Copy & Open</button>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Create a bookmark</h3>
+                    <p>Paste the code as the URL in a new bookmark. Right-click the bookmarks bar and select "Add Page" to save it.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Run the bookmarklet</h3>
+                    <p>Click your bookmark from the bookmarks bar. It'll load all your subscriptions and copy the titles to your clipboard automatically.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Made with care • <a href="#" style="color: #666666; text-decoration: none;">GitHub</a>
+        </footer>
+    </div>
+
+    <script>
+        function copyAndGo() {
+            const code = "javascript:(async function(){let targetUrl=window.location.href;let isSubscriptionPage=targetUrl.includes('/subscriptions');if(!isSubscriptionPage){let container=document.createElement('div');container.style.position='fixed';container.style.top='50%';container.style.left='50%';container.style.transform='translate(-50%, -50%)';container.style.zIndex='99999';container.style.backgroundColor='white';container.style.padding='30px';container.style.borderRadius='8px';container.style.boxShadow='0 4px 6px rgba(0,0,0,0.3)';container.style.textAlign='center';container.innerHTML='<p style=\"margin: 0 0 20px 0; font-size: 18px;\">You are not on the subscriptions page.</p>';let subBtn=document.createElement('button');subBtn.textContent='Go to Subscriptions Page';subBtn.style.padding='10px 20px';subBtn.style.marginRight='10px';subBtn.style.backgroundColor='#4CAF50';subBtn.style.color='white';subBtn.style.border='none';subBtn.style.borderRadius='4px';subBtn.style.cursor='pointer';subBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/subscriptions';let profileBtn=document.createElement('button');profileBtn.textContent='Go to Profiles Subscriptions';profileBtn.style.padding='10px 20px';profileBtn.style.backgroundColor='#2196F3';profileBtn.style.color='white';profileBtn.style.border='none';profileBtn.style.borderRadius='4px';profileBtn.style.cursor='pointer';profileBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/profiles/subscriptions';container.appendChild(subBtn);container.appendChild(profileBtn);document.body.appendChild(container);return}let clickCount=0;while(true){let viewMoreBtn=document.querySelector('button[hx-get][hx-swap]');if(viewMoreBtn&&viewMoreBtn.textContent.includes('View More')){viewMoreBtn.click();clickCount++;console.log(`Clicked \"View More\" #${clickCount}...`);await new Promise(resolve=>setTimeout(resolve,1000))}else{console.log('All subscriptions loaded!');break}}let titles=Array.from(document.querySelectorAll('article.bg-base-300 h2')).map(el=>el.textContent.trim()).filter(title=>title.length>0);if(titles.length===0){let profileSection=document.querySelector('section.grid.grid-cols-2');if(profileSection){titles=Array.from(profileSection.querySelectorAll('img[alt]')).map(el=>el.getAttribute('alt').replace(/\\s+cover$/i,'')).filter(title=>title.length>0)}}if(titles.length===0){let container=document.createElement('div');container.style.position='fixed';container.style.top='50%';container.style.left='50%';container.style.transform='translate(-50%, -50%)';container.style.zIndex='99999';container.style.backgroundColor='white';container.style.padding='30px';container.style.borderRadius='8px';container.style.boxShadow='0 4px 6px rgba(0,0,0,0.3)';container.style.textAlign='center';container.innerHTML='<p style=\"margin: 0 0 20px 0; font-size: 18px;\">No subscriptions found. Go to the correct section.</p>';let subBtn=document.createElement('button');subBtn.textContent='Go to Subscriptions Page';subBtn.style.padding='10px 20px';subBtn.style.marginRight='10px';subBtn.style.backgroundColor='#4CAF50';subBtn.style.color='white';subBtn.style.border='none';subBtn.style.borderRadius='4px';subBtn.style.cursor='pointer';subBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/subscriptions';let profileBtn=document.createElement('button');profileBtn.textContent='Go to Profiles Subscriptions';profileBtn.style.padding='10px 20px';profileBtn.style.backgroundColor='#2196F3';profileBtn.style.color='white';profileBtn.style.border='none';profileBtn.style.borderRadius='4px';profileBtn.style.cursor='pointer';profileBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/profiles/subscriptions';container.appendChild(subBtn);container.appendChild(profileBtn);document.body.appendChild(container);return}console.log(`Found ${titles.length} manga!`);console.log(titles.join('\\n'));navigator.clipboard.writeText(titles.join('\\n')).then(()=>{alert('✓ Copied '+titles.length+' titles to clipboard!')})})();";
+            
+            navigator.clipboard.writeText(code).then(() => {
+                window.open('https://weebcentral.com/users/me/subscriptions', '_blank');
+            }).catch(() => {
+                alert('Failed to copy code');
+            });
+        }
+    </script>
+</body>
+</html>
