@@ -19,7 +19,7 @@ A lightweight tool to load and extract your WeebCentral manga subscriptions inst
 ## Supported Pages
 
 - `https://weebcentral.com/users/me/subscriptions`
-- `https://weebcentral.com/users/me/profiles` (subscriptions section)
+- `https://weebcentral.com/users/me/profiles`
 
 ## What You Can Do With It
 
