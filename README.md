@@ -1,9 +1,9 @@
 # WeebCentral Exporter V3
-A lightweight tool to load and extract your WeebCentral manga subscriptions instantly!
+A lightweight tool to load and export your WeebCentral manga subscriptions instantly!
 
 ## What It Does
 
-- Extracts your WeebCentral subscriptions
+- Exports your WeebCentral subscriptions
 - Removes formatting artifacts (like suffixes)
 - Extracts all titles with one click
 - Works on both the subscriptions page and profiles section
