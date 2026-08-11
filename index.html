@@ -10,25 +10,92 @@
             padding: 0;
             box-sizing: border-box;
         }
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #000000;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
             color: #ffffff;
             padding: 60px 20px;
             line-height: 1.5;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 40% 40%, rgba(147, 51, 234, 0.08), transparent 50%), radial-gradient(circle at 60% 70%, rgba(59, 130, 246, 0.05), transparent 50%);
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
         }
         .container {
             max-width: 520px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
         header {
             margin-bottom: 80px;
+            animation: slideInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
         }
         h1 {
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 12px;
             letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #9333ea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .subtitle {
             font-size: 16px;
@@ -43,6 +110,17 @@
         .step {
             display: flex;
             gap: 24px;
+            animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        .step:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .step:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .step:nth-child(3) {
+            animation-delay: 0.4s;
         }
         .step-number {
             font-size: 14px;
@@ -64,23 +142,43 @@
         }
         .copy-btn {
             display: inline-block;
-            padding: 10px 20px;
-            background: #ffffff;
-            color: #000000;
-            border: none;
-            border-radius: 6px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: #ffffff;
+            border: 1px solid rgba(147, 51, 234, 0.5);
+            border-radius: 12px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.4), 0 0 20px rgba(147, 51, 234, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .copy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .copy-btn:hover::before {
+            left: 100%;
         }
         .copy-btn:hover {
-            background: #e6e6e6;
-            transform: translateY(-1px);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(147, 51, 234, 0.5), 0 0 30px rgba(147, 51, 234, 0.3);
+            border-color: rgba(147, 51, 234, 0.8);
         }
         .copy-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
         }
         footer {
             margin-top: 80px;
@@ -88,6 +186,7 @@
             border-top: 1px solid #222222;
             text-align: center;
             font-size: 14px;
+            animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
         }
         .footer-logo {
             margin-bottom: 16px;
@@ -102,7 +201,7 @@
             transition: color 0.2s ease;
         }
         .footer-links a:hover {
-            color: #ffffff;
+            color: #9333ea;
         }
     </style>
 </head>
@@ -152,14 +251,4 @@
 
     <script>
         function copyAndGo() {
-            const code = "javascript:(async function(){let targetUrl=window.location.href;let isSubscriptionPage=targetUrl.includes('/subscriptions');if(!isSubscriptionPage){let container=document.createElement('div');container.style.position='fixed';container.style.top='50%';container.style.left='50%';container.style.transform='translate(-50%, -50%)';container.style.zIndex='99999';container.style.backgroundColor='white';container.style.padding='30px';container.style.borderRadius='8px';container.style.boxShadow='0 4px 6px rgba(0,0,0,0.3)';container.style.textAlign='center';container.innerHTML='<p style=\"margin: 0 0 20px 0; font-size: 18px;\">You are not on the subscriptions page.</p>';let subBtn=document.createElement('button');subBtn.textContent='Go to Subscriptions Page';subBtn.style.padding='10px 20px';subBtn.style.marginRight='10px';subBtn.style.backgroundColor='#4CAF50';subBtn.style.color='white';subBtn.style.border='none';subBtn.style.borderRadius='4px';subBtn.style.cursor='pointer';subBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/subscriptions';let profileBtn=document.createElement('button');profileBtn.textContent='Go to Profiles Subscriptions';profileBtn.style.padding='10px 20px';profileBtn.style.backgroundColor='#2196F3';profileBtn.style.color='white';profileBtn.style.border='none';profileBtn.style.borderRadius='4px';profileBtn.style.cursor='pointer';profileBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/profiles/subscriptions';container.appendChild(subBtn);container.appendChild(profileBtn);document.body.appendChild(container);return}let clickCount=0;while(true){let viewMoreBtn=document.querySelector('button[hx-get][hx-swap]');if(viewMoreBtn&&viewMoreBtn.textContent.includes('View More')){viewMoreBtn.click();clickCount++;console.log(`Clicked \"View More\" #${clickCount}...`);await new Promise(resolve=>setTimeout(resolve,1000))}else{console.log('All subscriptions loaded!');break}}let titles=Array.from(document.querySelectorAll('article.bg-base-300 h2')).map(el=>el.textContent.trim()).filter(title=>title.length>0);if(titles.length===0){let profileSection=document.querySelector('section.grid.grid-cols-2');if(profileSection){titles=Array.from(profileSection.querySelectorAll('img[alt]')).map(el=>el.getAttribute('alt').replace(/\\s+cover$/i,'')).filter(title=>title.length>0)}}if(titles.length===0){let container=document.createElement('div');container.style.position='fixed';container.style.top='50%';container.style.left='50%';container.style.transform='translate(-50%, -50%)';container.style.zIndex='99999';container.style.backgroundColor='white';container.style.padding='30px';container.style.borderRadius='8px';container.style.boxShadow='0 4px 6px rgba(0,0,0,0.3)';container.style.textAlign='center';container.innerHTML='<p style=\"margin: 0 0 20px 0; font-size: 18px;\">No subscriptions found. Go to the correct section.</p>';let subBtn=document.createElement('button');subBtn.textContent='Go to Subscriptions Page';subBtn.style.padding='10px 20px';subBtn.style.marginRight='10px';subBtn.style.backgroundColor='#4CAF50';subBtn.style.color='white';subBtn.style.border='none';subBtn.style.borderRadius='4px';subBtn.style.cursor='pointer';subBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/subscriptions';let profileBtn=document.createElement('button');profileBtn.textContent='Go to Profiles Subscriptions';profileBtn.style.padding='10px 20px';profileBtn.style.backgroundColor='#2196F3';profileBtn.style.color='white';profileBtn.style.border='none';profileBtn.style.borderRadius='4px';profileBtn.style.cursor='pointer';profileBtn.onclick=()=>window.location.href='https://weebcentral.com/users/me/profiles/subscriptions';container.appendChild(subBtn);container.appendChild(profileBtn);document.body.appendChild(container);return}console.log(`Found ${titles.length} manga!`);console.log(titles.join('\\n'));navigator.clipboard.writeText(titles.join('\\n')).then(()=>{alert('✓ Copied '+titles.length+' titles to clipboard!')})})();";
-            
-            navigator.clipboard.writeText(code).then(() => {
-                window.open('https://weebcentral.com/users/me/subscriptions', '_blank');
-            }).catch(() => {
-                alert('Failed to copy code');
-            });
-        }
-    </script>
-</body>
-</html>
+            const code = "javascript:(async function(){let targetUrl=window.location.href;let isSubscriptionPage=targetUrl.includes('/subscriptions');let style=document.createElement('style');style.textContent=`@keyframes slideInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}@keyframes slideInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeInScale{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}@keyframes shimmer{0%{background-position:-1000px 0}100%{background-position:1000px 0}}@keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes breathe{0%,100%{opacity:0.8}50%{opacity:1}}.weebcentral-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(10,10,15,0.85),rgba(20,20,30,0.8));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:99998;display:flex;align-items:center;justify-content:center;animation:fadeInScale 0.5s cubic-bezier(0.16,1,0.3,1) forwards}.weebcentral-modal{position:relative;background:linear-gradient(135deg,#0a0a0f 0%,#1a1a2e 50%,#0f0f1a 100%);padding:48px 56px 56px 80px;border-radius:20px;box-shadow:0 0 80px rgba(0,0,0,0.8),0 0 40px rgba(255,255,255,0.05) inset;text-align:center;font-family:-apple-system,BlinkMacSystemFont,\\\"Segoe UI\\\",Roboto,\\\"Helvetica Neue\\\",Arial,sans-serif;max-width:500px;border:1px solid rgba(255,255,255,0.12);animation:slideInDown 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;position:relative;overflow:visible}.weebcentral-logo{position:absolute;top:20px;left:20px;width:48px;height:48px;background-size:contain;background-repeat:no-repeat;background-position:center;animation:slideInDown 0.5s cubic-bezier(0.34,1.56,0.64,1) 0s forwards;opacity:0;flex-shrink:0}.weebcentral-modal::before{content:'';position:absolute;top:-50%;left:-50%;right:-50%;bottom:-50%;background:radial-gradient(circle at 40% 40%,rgba(147,51,234,0.15),transparent 50%),radial-gradient(circle at 60% 70%,rgba(59,130,246,0.1),transparent 50%);pointer-events:none;animation:float 6s ease-in-out infinite}.weebcentral-modal::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);animation:shimmer 3s infinite;pointer-events:none}.weebcentral-modal-content{position:relative;z-index:2;width:100%}.weebcentral-modal-title{margin:0 0 12px 0;font-size:28px;color:#ffffff;font-weight:800;letter-spacing:-0.6px;line-height:1.2;animation:slideInDown 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s forwards;opacity:0;text-align:center}.weebcentral-modal-subtitle{margin:0 0 40px 0;font-size:14px;color:#888;font-weight:500;line-height:1.8;animation:slideInUp 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.15s forwards;opacity:0;letter-spacing:0.3px;text-align:center}.weebcentral-modal-count{display:inline-block;background:linear-gradient(135deg,#9333ea,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:900;font-size:32px;animation:fadeInScale 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s forwards;opacity:0}.weebcentral-loader{display:inline-block;width:6px;height:6px;margin:0 6px;background:#9333ea;border-radius:50%;animation:breathe 1.4s infinite;opacity:0.7}.weebcentral-loader:nth-child(2){animation-delay:0.2s}.weebcentral-loader:nth-child(3){animation-delay:0.4s}.weebcentral-button-group{display:flex;gap:12px;justify-content:center;margin-top:40px;position:relative;z-index:3;animation:slideInUp 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.3s forwards;opacity:0;width:100%}.weebcentral-modal-btn{padding:14px 32px!important;min-height:48px!important;border:none!important;border-radius:12px!important;cursor:pointer!important;font-size:15px!important;font-weight:700!important;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)!important;font-family:inherit!important;white-space:nowrap!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;overflow:hidden!important;text-transform:uppercase!important;letter-spacing:0.5px!important}.weebcentral-modal-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.6s ease!important}.weebcentral-modal-btn:hover::before{left:100%}.weebcentral-modal-btn::after{content:'';position:absolute;inset:0;opacity:0;background:radial-gradient(circle at center,rgba(255,255,255,0.1),transparent);transition:opacity 0.3s ease!important}.weebcentral-modal-btn:active::after{opacity:1;animation:fadeInScale 0.4s ease}.weebcentral-modal-btn-primary{background:linear-gradient(135deg,#9333ea 0%,#7e22ce 100%)!important;color:#ffffff!important;box-shadow:0 15px 40px rgba(147,51,234,0.4),0 0 20px rgba(147,51,234,0.2)!important;border:1px solid rgba(147,51,234,0.5)!important}.weebcentral-modal-btn-primary:hover{transform:translateY(-4px)!important;box-shadow:0 20px 50px rgba
