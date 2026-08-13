@@ -21,7 +21,7 @@ function copyAndGo() {
                 btn.textContent = 'Failed to copy';
                 btn.style.background = '#dc2626';
                 setTimeout(() => {
-                    btn.textContent = 'Copy & Go';
+                    btn.textContent = 'Copy & Open';
                     btn.disabled = false;
                     btn.style.background = '';
                 }, 3000);
@@ -30,3 +30,11 @@ function copyAndGo() {
 }
 
 window.copyAndGo = copyAndGo;
+
+// Attach the event listener when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const copyBtn = document.getElementById('copyBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', copyAndGo);
+    }
+});
