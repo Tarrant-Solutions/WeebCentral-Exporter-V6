@@ -1,14 +1,16 @@
 # WeebCentral Exporter V1.6
-A lightweight tool to load and export WeebCentral subscriptions instantly!
+A Universal lightweight tool to load and export WeebCentral subscriptions instantly!
 
 ## What It Does
 
 - Exports any WeebCentral subscription list
+- Algorithm sorts by last subscribed
 - Removes formatting artifacts and cleanly exports
 - Extracts all titles with one click
 - Works on all profiles
-- No installation, setup, or dependencies required
+- No annoying installation, setup, or dependencies required
 - Bypasses restrictions and API
+- Works on every device
 
 ## Features
 
@@ -45,7 +47,7 @@ The Exporter:
 ## Notes
 
 - Requires JavaScript enabled in your browser
-- Works best on desktop/laptop
+- Works best on PC but does work on all devices
 - Clipboard access requires browser permission
 
 ## License
@@ -54,4 +56,4 @@ MIT
 
 ---
 
-Made for WeebCentral users who want a quick way to manage their subscriptions.
+Made for WeebCentral users who want a quick way to export and manage their subscriptions.
