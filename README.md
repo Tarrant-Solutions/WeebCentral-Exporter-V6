@@ -4,7 +4,7 @@ A lightweight tool to load and export WeebCentral subscriptions instantly!
 ## What It Does
 
 - Exports any WeebCentral subscriptions
-- Removes formatting artifacts amd junk
+- Removes formatting artifacts and clean export
 - Extracts all titles with one click
 - Works on all profiles
 - No installation, setup, or dependencies required
