@@ -12,4 +12,3 @@ navigator.clipboard.writeText(bookmarkletCode).then(() => {
     console.error('Failed to copy:', err);
     alert('Failed to copy. Check console.');
 });
-});
