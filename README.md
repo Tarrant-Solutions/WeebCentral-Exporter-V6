@@ -24,7 +24,7 @@ A lightweight tool to load and export WeebCentral subscriptions instantly!
 ## Supported Pages
 
 - `https://weebcentral.com/users/me/subscriptions`
-- `https://weebcentral.com/users/me/profiles`
+- `https://weebcentral.com/users/{userId}/profiles/subscriptions`
 
 ## What You Can Do With It
 
