@@ -6,5 +6,5 @@ navigator.clipboard.writeText(bookmarkletCode).then(() => {
     window.location.href = 'https://weebcentral.com/users/me/subscriptions';
 }).catch(err => {
     console.error('Failed to copy:', err);
+   });
 });
-
