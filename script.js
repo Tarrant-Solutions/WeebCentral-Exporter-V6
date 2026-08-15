@@ -3,13 +3,8 @@ document.getElementById('copyBtn').addEventListener('click', function() {
      
 // Copy to clipboard
 navigator.clipboard.writeText(bookmarkletCode).then(() => {
-    alert('Bookmarklet copied to clipboard! Paste it in your browser bookmarks.');
-    // Auto-redirect to subscriptions page
-    setTimeout(() => {
-        window.location.href = 'https://weebcentral.com/users/me/subscriptions';
-    }, 500);
+    window.location.href = 'https://weebcentral.com/users/me/subscriptions';
 }).catch(err => {
     console.error('Failed to copy:', err);
-    alert('Failed to copy. Check console.');
-    });
-}); 
+});
+
