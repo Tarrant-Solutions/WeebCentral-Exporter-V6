@@ -35,19 +35,22 @@ A Universal lightweight tool to load and export WeebCentral subscriptions instan
 - Import into apps and websites
 - Organize your reading list 
 
-## Technical Details
+## Technical Details/How To Use
 
-The Exporter:
-1. Uses API to find all subscriptions
-2. Exports subscription titles
-3. Removes formatting artifacts
-4. Copies results to clipboard
-5. Shows confirmation alert
+1. Click Copy and Open 
+2. Create Bookmark
+3. Open bookmark whilst on subscriptions page
+4. API finds all subscriptions
+5. Removes formatting artifacts
+6. Export complete
+7. Choose whether to Copy Or Download
+8. Shows confirmation alert
 
 ## Notes
 
 - Requires JavaScript enabled in your browser
 - Works best on PC but does work on all devices
+- Mobile Users May have to enable Desktop Site feature
 - Clipboard access requires browser permission
 
 ## License
