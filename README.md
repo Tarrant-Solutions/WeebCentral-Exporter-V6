@@ -3,12 +3,12 @@ A lightweight tool to load and export WeebCentral subscriptions instantly!
 
 ## What It Does
 
-- Exports any WeebCentral subscriptions
+- Exports any WeebCentral subscription list
 - Removes formatting artifacts and cleanly exports
 - Extracts all titles with one click
 - Works on all profiles
 - No installation, setup, or dependencies required
-- Bypasses restrictions and api
+- Bypasses restrictions and API
 
 ## Features
 
@@ -29,14 +29,14 @@ A lightweight tool to load and export WeebCentral subscriptions instantly!
 ## What You Can Do With It
 
 - Share your manga list with friends
-- Keep a backup of your subscriptions
+- Keep a clean backup of your subscriptions
 - Import into apps and websites
-- Organize your reading list
+- Organize your reading list 
 
 ## Technical Details
 
 The Exporter:
-1. Auto-loads all subscriptions
+1. Uses API to find all subscriptions
 2. Exports subscription titles
 3. Removes formatting artifacts
 4. Copies results to clipboard
