@@ -1,5 +1,5 @@
 # WeebCentral Exporter V1.6
-A lightweight tool to load and export your WeebCentral manga subscriptions instantly!
+A lightweight tool to load and export WeebCentral subscriptions instantly!
 
 ## What It Does
 
